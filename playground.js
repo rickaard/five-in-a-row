@@ -1,35 +1,4 @@
-export const board = [
-    ['', '', '', '', '', '', ''],
-    ['', '', '', '', '', '', ''],
-    ['', '', '', '', '', '', ''],
-    ['', '', '', '', '', '', ''],
-    ['', '', '', '', '', '', ''],
-    ['', '', '', '', '', '', ''],
-];
-
-export const isHorizontalWin = (board, player) => {
-    const copiedBoard = [...board];
-    let isWin = false;
-    copiedBoard.forEach(row => {
-        let amountInRow = 0;
-        for (let cell of row) {
-            if (cell === player) {
-                amountInRow += 1;
-            } else {
-                amountInRow = 0;
-            }
-            if (amountInRow === 5) {
-                isWin = true;
-                break;
-            };
-        }
-    })
-
-    return isWin;
-};
-
-
-export const isVerticalWin = (board, player) => {
+const isVerticalWin = (board, player) => {
     const copiedBoard = [...board];
     let isWin = false;
 
@@ -51,6 +20,7 @@ export const isVerticalWin = (board, player) => {
 
     // if no occurance in either upper or second row there can't be 5 in a row vertically, return false
     if (cellIndexesInFirstRow.length === 0 && cellIndexesInSecondRow.length === 0) {
+        console.log('Nothing in neither first nor second row');
         return false;
     };
 
@@ -61,11 +31,14 @@ export const isVerticalWin = (board, player) => {
             if (amountInRow === 5) break;
             for (let i = 0; i < 5; i++) {
                 if (copiedBoard[i][cellIndex] === player) {
+                    console.log(`I rad ${i} och cellIndex ${cellIndex} är det === player`)
                     amountInRow += 1;
                 } else {
+                    console.log(`I rad ${i} och cellIndex ${cellIndex} är det !== player`)
                     amountInRow = 0;
                 }
                 if (amountInRow === 5) {
+                    console.log('amountInRow === 5!!!!!!')
                     break;
                 }
             }
@@ -78,11 +51,14 @@ export const isVerticalWin = (board, player) => {
             if (amountInRow === 5) break;
             for (let i = 0; i < 5; i++) {
                 if (copiedBoard[i][cellIndex] === player) {
+                    console.log(`I rad ${i} och cellIndex ${cellIndex} är det === player`)
                     amountInRow += 1;
                 } else {
+                    console.log(`I rad ${i} och cellIndex ${cellIndex} är det !== player`)
                     amountInRow = 0;
                 }
                 if (amountInRow === 5) {
+                    console.log('amountInRow === 5!!!!!!')
                     break;
                 }
             }
@@ -93,7 +69,14 @@ export const isVerticalWin = (board, player) => {
     return false;
 };
 
-// export const isDiagonalWin = (board, player) => {
-//     const copiedBoard = [...board];
-//     return true;
-// };
+
+
+const board = [
+    ['x', 'x', '', '', '', 'x', ''],
+    ['x', '', '', '', '', '', ''],
+    ['x', '', '', '', '', '', ''],
+    ['x', '', '', '', '', '', ''],
+    ['x', '', '', '', '', '', ''],
+    ['', '', '', '', '', '', ''],
+];
+console.log(isVerticalWin(board, 'x'));
