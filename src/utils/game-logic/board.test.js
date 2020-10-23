@@ -1,4 +1,4 @@
-import { isHorizontalWin, isVerticalWin } from './board';
+import { isHorizontalWin, isVerticalWin, isDiagonalWin } from './board';
 
 describe("Horizontal", () => {
 
@@ -117,7 +117,104 @@ describe("Vertical", () => {
             ];
             expect(isVerticalWin(board, 'x')).toBe(true)
         })
+        test("Returns true #3", () => {
+            const board = [
+                ['x', '', 'x', '', '', 'x', ''],
+                ['', '', 'x', '', '', '', ''],
+                ['x', '', 'x', '', '', '', ''],
+                ['x', '', 'x', '', '', '', ''],
+                ['x', '', 'x', '', '', '', ''],
+                ['x', '', '', '', '', '', ''],
+            ];
+            expect(isVerticalWin(board, 'x')).toBe(true)
+        })
+        test("Returns true #4", () => {
+            const board = [
+                ['x', '', '', '', '', 'x', ''],
+                ['', '', 'x', '', '', '', 'x'],
+                ['x', '', 'x', '', '', '', 'x'],
+                ['x', '', 'x', '', '', '', 'x'],
+                ['x', '', 'x', '', '', '', 'x'],
+                ['x', '', '', '', '', '', 'x'],
+            ];
+            expect(isVerticalWin(board, 'x')).toBe(true)
+        })
+        test("Returns true #4", () => {
+            const board = [
+                ['x', '', '', '', '', 'x', ''],
+                ['', '', 'x', '', 'o', '', 'x'],
+                ['x', '', 'x', '', 'o', '', ''],
+                ['x', '', 'x', '', 'o', '', 'x'],
+                ['x', '', 'x', '', 'o', '', 'x'],
+                ['x', '', '', '', 'o', '', 'o'],
+            ];
+            expect(isVerticalWin(board, 'o')).toBe(true)
+        })
 
     })
 
+    describe("Losses", () => {
+        test("Returns false #1", () => {
+            const board = [
+                ['x', '', '', '', '', 'x', ''],
+                ['', '', 'x', '', '', '', 'x'],
+                ['x', '', 'x', '', '', '', 'x'],
+                ['x', '', 'x', '', '', '', ''],
+                ['x', '', 'x', '', '', '', 'x'],
+                ['x', '', '', '', '', '', 'x'],
+            ];
+            expect(isVerticalWin(board, 'x')).toBe(false);
+        })
+    })
+
+});
+
+describe("Diagonal", () => {
+    describe("Wins", () => {
+
+        test("Returns true #1", () => {
+            const board = [
+                ['x', '', '', '', '', '', ''],
+                ['', 'x', '', '', '', '', ''],
+                ['', '', 'x', '', '', '', ''],
+                ['', '', '', 'x', '', '', ''],
+                ['', '', '', '', 'x', '', ''],
+                ['', '', '', '', '', '', ''],
+            ];
+            expect(isDiagonalWin(board, 'x')).toBe(true);
+        })
+        test("Returns true #2", () => {
+            const board = [
+                ['', 'x', '', '', '', '', ''],
+                ['', '', 'x', '', '', '', ''],
+                ['', '', '', 'x', '', '', ''],
+                ['', '', '', '', 'x', '', ''],
+                ['', '', '', '', '', 'x', ''],
+                ['', '', '', '', '', '', ''],
+            ];
+            expect(isDiagonalWin(board, 'x')).toBe(true);
+        })
+        test("Returns true #3", () => {
+            const board = [
+                ['', '', '', '', '', 'x', ''],
+                ['', '', '', '', 'x', '', ''],
+                ['', '', '', 'x', '', '', ''],
+                ['', '', 'x', '', '', '', ''],
+                ['', 'x', '', '', '', '', ''],
+                ['', '', '', '', '', '', ''],
+            ];
+            expect(isDiagonalWin(board, 'x')).toBe(true);
+        })
+        test("Returns true #4", () => {
+            const board = [
+                ['', '', '', '', 'x', 'x', ''],
+                ['', '', '', 'x', 'x', '', ''],
+                ['', '', 'x', '', '', '', ''],
+                ['', 'x', '', '', '', '', ''],
+                ['x', '', '', 'x', '', '', ''],
+                ['', '', '', '', '', '', ''],
+            ];
+            expect(isDiagonalWin(board, 'x')).toBe(true);
+        })
+    })
 })
