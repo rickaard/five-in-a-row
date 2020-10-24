@@ -135,14 +135,12 @@ export const isDiagonalWin = (board, player) => {
     };
 
     let amountInRow = 0;
-    // start from the upper row and look if there's a vertical win
     if (cellIndexesInFirstRow.length > 0 && !isWin) {
         for (let cellIndex of cellIndexesInFirstRow) {
             if (amountInRow === 5) {
                 isWin = true;
                 break;
             };
-
 
             if (cellIndex < 3) {
                 let i = 0;
@@ -179,18 +177,51 @@ export const isDiagonalWin = (board, player) => {
                     --currentCellIndex;
                 }
             }
+        }
+    }
 
-            // for (let i = 0; i < 5; i++) {
-            //     if (copiedBoard[i][cellIndex] === player) {
-            //         amountInRow += 1;
-            //     } else {
-            //         amountInRow = 0;
-            //     }
-            //     if (amountInRow === 5) {
-            //         isWin = true;
-            //         break;
-            //     }
-            // }
+    if (cellIndexesInSecondRow.length > 0 && !isWin) {
+        for (let cellIndex of cellIndexesInFirstRow) {
+            if (amountInRow === 5) {
+                isWin = true;
+                break;
+            };
+
+            if (cellIndex < 3) {
+                let i = 1;
+                let currentCellIndex = cellIndex;
+                while (i < 6) {
+                    if (copiedBoard[i][currentCellIndex] === player) {
+                        amountInRow += 1;
+                    } else {
+                        amountInRow = 0;
+                    }
+                    if (amountInRow === 5) {
+                        isWin = true;
+                        break;
+                    }
+                    i++;
+                    currentCellIndex++;
+                }
+            }
+
+            if (cellIndex >= 3) {
+                let i = 1;
+                let currentCellIndex = cellIndex;
+                while (i < 6) {
+                    if (copiedBoard[i][currentCellIndex] === player) {
+                        amountInRow += 1;
+                    } else {
+                        amountInRow = 0;
+                    }
+                    if (amountInRow === 5) {
+                        isWin = true;
+                        break;
+                    }
+                    i++;
+                    --currentCellIndex;
+                }
+            }
         }
     }
 
