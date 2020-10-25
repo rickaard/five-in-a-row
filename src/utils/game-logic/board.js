@@ -1,11 +1,11 @@
-// export const board = [
-//     ['', '', '', '', '', '', ''],
-//     ['', '', '', '', '', '', ''],
-//     ['', '', '', '', '', '', ''],
-//     ['', '', '', '', '', '', ''],
-//     ['', '', '', '', '', '', ''],
-//     ['', '', '', '', '', '', ''],
-// ];
+export const initBoard = [
+    ['', '', '', '', '', '', ''],
+    ['', '', '', '', '', '', ''],
+    ['', '', '', '', '', '', ''],
+    ['', '', '', '', '', '', ''],
+    ['', '', '', '', '', '', ''],
+    ['', '', '', '', '', '', ''],
+];
 
 export const isHorizontalWin = (board, player) => {
     const copiedBoard = [...board];
@@ -102,14 +102,7 @@ export const isVerticalWin = (board, player) => {
 };
 
 export const isDiagonalWin = (board, player) => {
-    // const board = [
-    //     ['x', '', '', '', '', '', ''],
-    //     ['', 'x', '', '', '', '', ''],
-    //     ['', '', 'x', '', '', '', ''],
-    //     ['', '', '', 'x', '', '', ''],
-    //     ['', '', '', '', 'x', '', ''],
-    //     ['', '', '', '', '', '', ''],
-    // ];
+
     const copiedBoard = [...board];
     let isWin = false;
 
@@ -135,6 +128,7 @@ export const isDiagonalWin = (board, player) => {
     };
 
     let amountInRow = 0;
+
     if (cellIndexesInFirstRow.length > 0 && !isWin) {
         for (let cellIndex of cellIndexesInFirstRow) {
             if (amountInRow === 5) {
@@ -143,84 +137,74 @@ export const isDiagonalWin = (board, player) => {
             };
 
             if (cellIndex < 3) {
-                let i = 0;
                 let currentCellIndex = cellIndex;
-                while (i < 5) {
-                    if (copiedBoard[i][currentCellIndex] === player) {
-                        amountInRow += 1;
-                    } else {
-                        amountInRow = 0;
-                    }
+                for (let i = 0; i < 5; i++) {
+                    if (copiedBoard[i][currentCellIndex] === player) amountInRow += 1;
+                    else amountInRow = 0;
+
                     if (amountInRow === 5) {
                         isWin = true;
                         break;
                     }
-                    i++;
                     currentCellIndex++;
                 }
+
             }
 
             if (cellIndex >= 3) {
-                let i = 0;
                 let currentCellIndex = cellIndex;
-                while (i < 5) {
-                    if (copiedBoard[i][currentCellIndex] === player) {
-                        amountInRow += 1;
-                    } else {
-                        amountInRow = 0;
-                    }
+
+                for (let i = 0; i < 5; i++) {
+                    if (copiedBoard[i][currentCellIndex] === player) amountInRow += 1;
+                    else amountInRow = 0;
+
                     if (amountInRow === 5) {
                         isWin = true;
                         break;
                     }
-                    i++;
                     --currentCellIndex;
                 }
+
             }
         }
     }
 
     if (cellIndexesInSecondRow.length > 0 && !isWin) {
-        for (let cellIndex of cellIndexesInFirstRow) {
+        for (let cellIndex of cellIndexesInSecondRow) {
             if (amountInRow === 5) {
                 isWin = true;
                 break;
             };
 
             if (cellIndex < 3) {
-                let i = 1;
                 let currentCellIndex = cellIndex;
-                while (i < 6) {
-                    if (copiedBoard[i][currentCellIndex] === player) {
-                        amountInRow += 1;
-                    } else {
-                        amountInRow = 0;
-                    }
+                for (let i = 1; i < 6; i++) {
+                    if (copiedBoard[i][currentCellIndex] === player) amountInRow += 1;
+                    else amountInRow = 0;
+
                     if (amountInRow === 5) {
                         isWin = true;
                         break;
                     }
-                    i++;
                     currentCellIndex++;
                 }
+
             }
 
             if (cellIndex >= 3) {
-                let i = 1;
                 let currentCellIndex = cellIndex;
-                while (i < 6) {
-                    if (copiedBoard[i][currentCellIndex] === player) {
-                        amountInRow += 1;
-                    } else {
-                        amountInRow = 0;
-                    }
+
+                for (let i = 1; i < 6; i++) {
+                    if (copiedBoard[i][currentCellIndex] === player) amountInRow += 1;
+                    else amountInRow = 0;
+
                     if (amountInRow === 5) {
                         isWin = true;
                         break;
                     }
-                    i++;
                     --currentCellIndex;
                 }
+
             }
         }
     }
